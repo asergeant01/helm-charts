@@ -1,3 +1,4 @@
+{{- if .Values.initdbScripts }}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -7,8 +8,9 @@ data:
 {{- with .Values.initdbScripts }}
 {{ toYaml . | indent 2 }}
 {{- end }}
+{{- end}}
 ---
-{{- if .Values.initdbScripts }}
+{{- if or .Values.initdbScripts .Values.initdbScriptsConfigMap }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -49,7 +51,7 @@ spec:
       volumes:
         - name: sql-script
           configMap:
-            name: init-scripts
+            name: {{ .Values.initdbScriptsConfigMap }}
             defaultMode: 420
       initContainers:
         - name: wait-for-database
