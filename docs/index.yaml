@@ -1,0 +1,23 @@
+apiVersion: v1
+entries:
+  stolon:
+  - apiVersion: v1
+    appVersion: 0.13.0
+    created: "2020-01-21T10:08:56.870391Z"
+    description: Stolon - PostgreSQL cloud native High Availability.
+    digest: 3672934b001de96b4b9d37e14a7c309fb4244dc825e72cd87ca2b64724ee7c09
+    home: https://github.com/sorintlab/stolon
+    icon: https://i.imgur.com/tIW8sAW.png
+    maintainers:
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: ipaq.lw@gmail.com
+      name: lwolf
+    name: stolon
+    sources:
+    - https://github.com/sorintlab/stolon
+    - https://github.com/lwolf/stolon-chart
+    urls:
+    - https://asergeant01.github.io/helm-charts/stolon-1.5.6.tgz
+    version: 1.5.6
+generated: "2020-01-21T10:08:56.867833Z"
