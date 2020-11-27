@@ -48,3 +48,39 @@ Create chart name and version as used by the chart label.
     {{- template "stolon.fullname" . -}}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Return the proper Stolon image name
+*/}}
+{{- define "stolon.image" -}}
+{{- $registryName := .Values.image.registry -}}
+{{- $repositoryName := .Values.image.repository -}}
+{{- $tag := .Values.image.tag | toString -}}
+{{- if .Values.global }}
+    {{- if .Values.global.imageRegistry }}
+        {{- printf "%s/%s:%s" .Values.global.imageRegistry $repositoryName $tag -}}
+    {{- else -}}
+        {{- printf "%s/%s:%s" $registryName $repositoryName $tag -}}
+    {{- end -}}
+{{- else -}}
+    {{- printf "%s/%s:%s" $registryName $repositoryName $tag -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Return the proper Stolon image name
+*/}}
+{{- define "dockerize.image" -}}
+{{- $registryName := .Values.dockerize.image.registry -}}
+{{- $repositoryName := .Values.dockerize.image.repository -}}
+{{- $tag := .Values.dockerize.image.tag | toString -}}
+{{- if .Values.global }}
+    {{- if .Values.global.imageRegistry }}
+        {{- printf "%s/%s:%s" .Values.global.imageRegistry $repositoryName $tag -}}
+    {{- else -}}
+        {{- printf "%s/%s:%s" $registryName $repositoryName $tag -}}
+    {{- end -}}
+{{- else -}}
+    {{- printf "%s/%s:%s" $registryName $repositoryName $tag -}}
+{{- end -}}
+{{- end -}}

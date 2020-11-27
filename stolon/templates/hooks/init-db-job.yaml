@@ -35,7 +35,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: create-database-job
-        image: 'postgres'
+        image: "{{ .Values.image.registry }}/postgres"
         env:
           - name: USERNAME
             value: {{ .Values.superuserUsername }}
@@ -55,6 +55,7 @@ spec:
             defaultMode: 420
       initContainers:
         - name: wait-for-database
-          image: jwilder/dockerize
+          image: "{{ template "dockerize.image" . }}"
+          imagePullPolicy: {{ .Values.dockerize.image.pullPolicy }}
           command: ['dockerize', '-timeout', '30s', '-wait', 'tcp://{{ template "stolon.fullname" . }}-proxy:5432']
 {{- end }}

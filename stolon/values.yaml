@@ -1,11 +1,19 @@
 # clusterName:
 image:
+  registry: docker.wdf.sap.corp:50000
   repository: sorintlab/stolon
   tag: v0.16.0-pg12
   pullPolicy: IfNotPresent
   ## Add secrets manually via kubectl on kubernetes cluster and reference here
   # pullSecrets:
   #   - name: "myKubernetesSecret"
+
+dockerize:
+  image:
+    registry: docker.wdf.sap.corp:50000
+    repository: jwilder/dockerize
+    tag: latest
+    pullPolicy: IfNotPresent
 
 initdbScriptsConfigMap: init-scripts
 
